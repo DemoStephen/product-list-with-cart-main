@@ -9,58 +9,245 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="d-flex">
+  <!-- All Products -->
+  <main>
+    <header>
+      <h1>Desserts</h1>
+    </header>
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-waffle-desktop.jpg" media="(min-width: 1024px)">
+        <source srcset="./assets/images/image-waffle-tablet.jpg" media="(min-width: 870px)">
+        <img src="./assets/images/image-waffle-mobile.jpg" alt="Image of Waffle with Berries">
+      </picture>
+      <button>
+        <span data-addToCart="addToCart" class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span data-increaseQuantity="increaseQuantity" class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Waffle</p>
+      <h4>Waffle with Berries
+        <br><span>$6.50</span>
+      </h4>
+    </section>
 
-  Desserts
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-creme-brulee-desktop.jpg" media="(min-width: 1024px)">
+        <source srcset="./assets/images/image-creme-brulee-tablet.jpg" media="(min-width: 870px)">
+        <img src="./assets/images/image-creme-brulee-mobile.jpg" alt="Image of Waffle with Berries">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Crème Brûlée</p>
+      <h4>
+        Vanilla Bean Crème Brûlée
+        <br><span>$7.00</span>
+      </h4>
+    </section>
 
-  Waffle with Berries
-  Waffle
-  6.50
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-macaron-desktop.jpg" media="(min-width: 1024px)">
+        <source srcset="./assets/images/image-macaron-tablet.jpg" media="(min-width: 870px)">
+        <img src="./assets/images/image-macaron-mobile.jpg" alt="Image of a macaron">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Macaron</p>
+      <h4>
+        Macaron Mix of Five
+        <br>
+        <span>$8.00</span>
+      </h4>
+    </section>
 
-  Vanilla Bean Crème Brûlée
-  Crème Brûlée
-  7.00
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-tiramisu-desktop.jpg" media="(min-width: 1024px)">
+        <source srcset="./assets/images/image-tiramisu-tablet.jpg" media="(min-width: 870px)">
+        <img src="./assets/images/image-tiramisu-mobile.jpg" alt="Image of tiramisu">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Tiramisu</p>
+      <h4>
+        Classic Tiramisu
+        <br>
+        <span>$5.50</span>
+      </h4>
+    </section>
 
-  Macaron Mix of Five
-  Macaron
-  8.00
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-baklava-desktop.jpg" media="(min-width: 1024px)">
+        <source srcset="./assets/images/image-baklava-tablet.jpg" media="(min-width: 870px)">
+        <img src="./assets/images/image-baklava-mobile.jpg" alt="Image of a baklava">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Baklava</p>
+      <h4>
+        Pistachio Baklava
+        <br>
+        <span>$4.00</span>
+      </h4>
+    </section>
 
-  Classic Tiramisu
-  Tiramisu
-  5.50
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-meringue-desktop.jpg" media="(min-width: 1024px)">
+        <source srcset="./assets/images/image-meringue-tablet.jpg" media="(min-width: 870px)">
+        <img src="./assets/images/image-meringue-mobile.jpg" alt="Image of a meringue">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Pie</p>
+      <h4>
+        Lemon Meringue Pie
+        <br>
+        <span>$5.00</span>
+      </h4>
+    </section>
 
-  Pistachio Baklava
-  Baklava
-  4.00
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-cake-desktop.jpg">
+        <source srcset="./assets/images/image-cake-tablet.jpg">
+        <img src="./assets/images/image-cake-mobile.jpg" alt="Image of a Cake">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Cake</p>
+      <h4>
+        Red Velvet Cake
+        <br>
+        <span>$4.50</span>
+      </h4>
+    </section>
 
-  Lemon Meringue Pie
-  Pie
-  5.00
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-brownie-desktop.jpg">
+        <source srcset="./assets/images/image-brownie-tablet.jpg">
+        <img src="./assets/images/image-brownie-mobile.jpg" alt="Image of a Salted Caramel Brownie">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
+      <p>Brownie</p>
+      <h4>
+        Salted Caramel Brownie
+        <br>
+        <span>$4.50</span>
+      </h4>
+    </section>
 
-  Red Velvet Cake
-  Cake
-  4.50
-  Add to Cart
+    <section>
+      <picture>
+        <source srcset="./assets/images/image-panna-cotta-desktop.jpg">
+        <source srcset="./assets/images/image-panna-cotta-tablet.jpg">
+        <img src="./assets/images/image-panna-cotta-mobile.jpg" alt="Image of a Vanilla Panna Cotta">
+      </picture>
+      <button>
+        <span class="Btn">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+          Add to Cart
+        </span>
+        <span class="secondBtn Btn d-none">
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+          <strong>1</strong>
+          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        </span>
+      </button>
 
-  Salted Caramel Brownie
-  Brownie
-  4.50
-  Add to Cart
-
-  Vanilla Panna Cotta
-  Panna Cotta
-  6.50
-  Add to Cart
-
-  Your Cart (<!-- Quantity -->)
-  Your added items will appear here
-
+      <p>Panna Cotta</p>
+      <h4>
+        Vanilla Panna Cotta
+        <br>
+        <span>$6.50</span>
+      </h4>
+    </section>
+  </main>
+  <!-- Cart -->
+  <section class="cart">
+    <h3>Your Cart (<span>0</span>)</h3>
+    <div>
+      <div class="empty">
+        <img src="./assets/images/illustration-empty-cart.svg" alt="empty cart">
+        <p>Your added items will appear here</p>
+      </div>
+    </div>
+  </section>
   <script src="main.js"></script>
 </body>
 
