@@ -57,27 +57,33 @@ main section picture {
   width: 100%;
 }
 main section picture img {
-  border: 2px solid var(--Rose100);
+  border: 2px solid transparent;
   border-radius: 0.75rem;
   width: 100%;
 }
 main section button {
   width: 70%;
   margin: 0 15%;
-  transform: translateY(-1.5rem);
+  transform: translateY(-2.5em);
   overflow: hidden;
   border-radius: 5rem;
   border: 1px solid var(--Rose400);
   background-color: var(--Rose50);
+  display: flex;
+  align-items: center;
 }
 .Btn {
   gap: 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 0.65rem;
   cursor: pointer;
   width: 100%;
-  min-height: 3em;
+}
+.Btn img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .secondBtn {
   background-color: var(--Red);
@@ -114,9 +120,9 @@ main section h4 span {
 .cart h3 {
   color: var(--Red);
   font-family: "Red-Hat-Bold";
+  margin: 0 0 1.5rem 0;
 }
 .cart .empty {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -127,6 +133,21 @@ main section h4 span {
   width: 50%;
   margin: 1rem 0;
 }
+.cart .productInCart {
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0.75rem 0;
+}
+.cart .productInCart img {
+  padding: 0.35rem;
+  border-radius: 50%;
+  border: 1px solid var(--Rose100);
+  cursor: pointer;
+}
+.cart .productInCart div p {
+  gap: 0.4rem;
+  margin: 0.05rem 0 0 0;
+}
 button {
   outline: none;
 }
@@ -136,17 +157,20 @@ button {
 .transBorder {
   border: 2px solid transparent;
 }
+.d-flex {
+  display: flex;
+}
 .d-block {
   display: block;
 }
 .d-none {
   display: none;
 }
-.d-flex {
-  display: flex;
-}
-/* Tablet */
-@media (max-width: 1024px) {
+/* Media Query Tablet */
+@media (max-width: 64rem) {
+  body {
+    width: 100%;
+  }
   main {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -158,8 +182,8 @@ button {
     width: 45%;
   }
 }
-/* Mobile */
-@media (max-width: 870px) {
+/* Media Query Mobile (LandScape)*/
+@media (max-width: 54.375rem) {
   body {
     flex-direction: column;
     width: 100%;
@@ -167,8 +191,32 @@ button {
     padding: 0 5%;
   }
   main section button {
-    width: 50%;
-    margin: 0 25%;
+    width: 80%;
+    margin: 0 10%;
+  }
+  main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  main header {
+    grid-area: 1/1/2/3;
+  }
+  .cart {
+    width: 100%;
+    position: unset;
+  }
+}
+/* Media Query Mobile (Potraite)*/
+@media (max-width: 31.25rem) {
+  body {
+    flex-direction: column;
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0 5%;
+  }
+  main section button {
+    width: 60%;
+    margin: 0 20%;
   }
   main {
     grid-template-columns: 1fr;
@@ -180,5 +228,12 @@ button {
   .cart {
     width: 100%;
     position: unset;
+  }
+}
+
+@media (max-width: 18.75rem) {
+  main section button {
+    width: 80%;
+    margin: 0 10%;
   }
 }
