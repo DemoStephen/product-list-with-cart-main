@@ -4,41 +4,46 @@ const addToCart = document.querySelectorAll("[data-addToCart]");
 const quantities = document.querySelectorAll("[data-quantity]");
 const decrementQuantity = document.querySelectorAll("[data-decrementQuantity]");
 const incrementQuantity = document.querySelectorAll("[data-incrementQuantity]");
+const emptyCart = document.querySelector("[data-emptyCart]");
 
 addToCart.forEach((cart, index) => {
   cart.addEventListener("click", (event) => {
-    let value = +quantities[index].innerText;
     event.preventDefault();
     cart.classList.add("d-none");
     cartQuantity[index].classList.remove("d-none");
     imageBorder[index].classList.add("border");
-    cartUpdate();
   });
 });
 
-decrementQuantity.forEach((decrease, index) => {
-  let value = +quantities[index].innerText;
-  decrease.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (value < 2) {
-      addToCart[index].classList.remove("d-none");
-      cartQuantity[index].classList.add("d-none");
-      imageBorder[index].classList.remove("border");
-      return (value = 1);
-    }
-    value--;
-    quantities[index].innerText = value;
+const setQuantity = () => {
+  let totalQuantity;
+  incrementQuantity.forEach((increase, index) => {
+    increase.addEventListener("click", (event) => {
+      let array = [];
+      let value = +quantities[index].innerText;
+      event.preventDefault();
+      value++;
+      array.push(value);
+      console.log(array[0]);
+      quantities[index].innerText = value;
+      return;
+    });
   });
-});
-
-incrementQuantity.forEach((increase, index) => {
-  let value = +quantities[index].innerText;
-  increase.addEventListener("click", (event) => {
-    event.preventDefault();
-    value++;
-    quantities[index].innerText = value;
+  decrementQuantity.forEach((decrease, index) => {
+    decrease.addEventListener("click", (event) => {
+      let value = +quantities[index].innerText;
+      event.preventDefault();
+      if (value < 2) {
+        cartQuantity[index].classList.add("d-none");
+        addToCart[index].classList.remove("d-none");
+        imageBorder[index].classList.remove("border");
+        value = 2;
+      }
+      value--;
+      quantities[index].innerText = value;
+    });
   });
-});
+};
+setQuantity();
 
-const totalPicks = document.querySelector("[data-totalPicks]");
 const cartUpdate = () => {};
