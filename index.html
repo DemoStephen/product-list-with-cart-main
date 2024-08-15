@@ -15,21 +15,25 @@
     <header>
       <h1>Desserts</h1>
     </header>
+
     <section>
       <picture>
         <source srcset="./assets/images/image-waffle-desktop.jpg" media="(min-width: 1024px)">
         <source srcset="./assets/images/image-waffle-tablet.jpg" media="(min-width: 870px)">
-        <img src="./assets/images/image-waffle-mobile.jpg" alt="Image of Waffle with Berries">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-waffle-mobile.jpg"
+          alt="Image of Waffle with Berries">
       </picture>
       <button>
         <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span data-increaseQuantity="increaseQuantity" class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
           <strong data-quantity="quantity">1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Waffle</p>
@@ -42,17 +46,20 @@
       <picture>
         <source srcset="./assets/images/image-creme-brulee-desktop.jpg" media="(min-width: 1024px)">
         <source srcset="./assets/images/image-creme-brulee-tablet.jpg" media="(min-width: 870px)">
-        <img src="./assets/images/image-creme-brulee-mobile.jpg" alt="Image of Waffle with Berries">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-creme-brulee-mobile.jpg"
+          alt="Image of Waffle with Berries">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Crème Brûlée</p>
@@ -66,17 +73,19 @@
       <picture>
         <source srcset="./assets/images/image-macaron-desktop.jpg" media="(min-width: 1024px)">
         <source srcset="./assets/images/image-macaron-tablet.jpg" media="(min-width: 870px)">
-        <img src="./assets/images/image-macaron-mobile.jpg" alt="Image of a macaron">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-macaron-mobile.jpg" alt="Image of a macaron">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Macaron</p>
@@ -91,17 +100,19 @@
       <picture>
         <source srcset="./assets/images/image-tiramisu-desktop.jpg" media="(min-width: 1024px)">
         <source srcset="./assets/images/image-tiramisu-tablet.jpg" media="(min-width: 870px)">
-        <img src="./assets/images/image-tiramisu-mobile.jpg" alt="Image of tiramisu">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-tiramisu-mobile.jpg" alt="Image of tiramisu">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Tiramisu</p>
@@ -116,17 +127,19 @@
       <picture>
         <source srcset="./assets/images/image-baklava-desktop.jpg" media="(min-width: 1024px)">
         <source srcset="./assets/images/image-baklava-tablet.jpg" media="(min-width: 870px)">
-        <img src="./assets/images/image-baklava-mobile.jpg" alt="Image of a baklava">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-baklava-mobile.jpg" alt="Image of a baklava">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Baklava</p>
@@ -141,17 +154,19 @@
       <picture>
         <source srcset="./assets/images/image-meringue-desktop.jpg" media="(min-width: 1024px)">
         <source srcset="./assets/images/image-meringue-tablet.jpg" media="(min-width: 870px)">
-        <img src="./assets/images/image-meringue-mobile.jpg" alt="Image of a meringue">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-meringue-mobile.jpg" alt="Image of a meringue">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Pie</p>
@@ -166,17 +181,19 @@
       <picture>
         <source srcset="./assets/images/image-cake-desktop.jpg">
         <source srcset="./assets/images/image-cake-tablet.jpg">
-        <img src="./assets/images/image-cake-mobile.jpg" alt="Image of a Cake">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-cake-mobile.jpg" alt="Image of a Cake">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Cake</p>
@@ -191,17 +208,20 @@
       <picture>
         <source srcset="./assets/images/image-brownie-desktop.jpg">
         <source srcset="./assets/images/image-brownie-tablet.jpg">
-        <img src="./assets/images/image-brownie-mobile.jpg" alt="Image of a Salted Caramel Brownie">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-brownie-mobile.jpg"
+          alt="Image of a Salted Caramel Brownie">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
       <p>Brownie</p>
@@ -216,17 +236,20 @@
       <picture>
         <source srcset="./assets/images/image-panna-cotta-desktop.jpg">
         <source srcset="./assets/images/image-panna-cotta-tablet.jpg">
-        <img src="./assets/images/image-panna-cotta-mobile.jpg" alt="Image of a Vanilla Panna Cotta">
+        <img data-imageBorder="imageBorder" src="./assets/images/image-panna-cotta-mobile.jpg"
+          alt="Image of a Vanilla Panna Cotta">
       </picture>
       <button>
-        <span class="Btn">
+        <span data-addToCart="addToCart" class="Btn">
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span class="secondBtn Btn d-none">
-          <img src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong>1</strong>
-          <img src="./assets/images/icon-increment-quantity.svg" alt="increment">
+        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
+          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+            alt="decrement">
+          <strong data-quantity="quantity">1</strong>
+          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+            alt="increment">
         </span>
       </button>
 
@@ -240,7 +263,7 @@
   </main>
   <!-- Cart -->
   <section class="cart">
-    <h3>Your Cart (<span>0</span>)</h3>
+    <h3>Your Cart (<span data-totalPicks="totalPicks">0</span>)</h3>
     <div>
       <div class="empty">
         <img src="./assets/images/illustration-empty-cart.svg" alt="empty cart">
