@@ -57,7 +57,7 @@ main section picture {
   width: 100%;
 }
 main section picture img {
-  border: 2px solid transparent;
+  border: 2px solid var(--Rose100);
   border-radius: 0.75rem;
   width: 100%;
 }
@@ -76,6 +76,8 @@ main section button {
   justify-content: center;
   padding: 0.65rem;
   cursor: pointer;
+  width: 100%;
+  min-height: 3em;
 }
 .secondBtn {
   background-color: var(--Red);
@@ -92,7 +94,7 @@ main section button {
 main section p {
   margin: -1rem 0 0 0;
   font-size: 0.85rem;
-  color: var(--Rose300);
+  color: var(--Rose500);
 }
 main section h4 {
   color: var(--Rose900);
@@ -107,7 +109,7 @@ main section h4 span {
   background-color: var(--Rose50);
   padding: 0.65rem;
   position: sticky;
-  top: 2rem;
+  top: 1.5rem;
 }
 .cart h3 {
   color: var(--Red);
@@ -128,7 +130,12 @@ main section h4 span {
 button {
   outline: none;
 }
-
+.border {
+  border: 2px solid var(--Red);
+}
+.transBorder {
+  border: 2px solid transparent;
+}
 .d-block {
   display: block;
 }
