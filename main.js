@@ -4,8 +4,6 @@ const addToCart = document.querySelectorAll("[data-addToCart]");
 const quantities = document.querySelectorAll("[data-quantity]");
 const decrementQuantity = document.querySelectorAll("[data-decrementQuantity]");
 const incrementQuantity = document.querySelectorAll("[data-incrementQuantity]");
-const emptyCart = document.querySelector("[data-emptyCart]");
-
 addToCart.forEach((cart, index) => {
   cart.addEventListener("click", (event) => {
     event.preventDefault();
@@ -14,17 +12,12 @@ addToCart.forEach((cart, index) => {
     imageBorder[index].classList.add("border");
   });
 });
-
 const setQuantity = () => {
-  let totalQuantity;
   incrementQuantity.forEach((increase, index) => {
     increase.addEventListener("click", (event) => {
-      let array = [];
       let value = +quantities[index].innerText;
       event.preventDefault();
       value++;
-      array.push(value);
-      console.log(array[0]);
       quantities[index].innerText = value;
       return;
     });
@@ -45,5 +38,9 @@ const setQuantity = () => {
   });
 };
 setQuantity();
-
 const cartUpdate = () => {};
+const priceUpdate = () => {};
+
+const emptyCart = document.querySelector("[data-emptyCart]");
+const totalPicks = document.querySelector("[data-totalPicks]");
+const productSelected = document.querySelector("[data-productSelected]");
