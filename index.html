@@ -265,20 +265,35 @@
   <section class="cart">
     <h3>Your Cart (<span data-totalPicks="totalPicks">0</span>)</h3>
     <div>
-      <div data-emptyCart="emptyCart" class="empty d-flex">
+      <div data-emptyCart="emptyCart" class="empty d-flex d-none">
         <img src="./assets/images/illustration-empty-cart.svg" alt="empty cart">
         <p>Your added items will appear here</p>
       </div>
-      <div class="productInCart d-flex">
-        <div>
-          <h4>Classic Tiramisu</h4>
-          <p class="d-flex">
-            <span>1x</span>
-            <span>@$5.50</span>
-            <strong>$5.50</strong>
-          </p>
+
+      <div data-productSelected="productSelected" class="selections d-flex">
+        <div class="productInCart d-flex">
+          <div>
+            <h4>Lorem, ipsum.</h4>
+            <p class="d-flex">
+              <span>1x</span>
+              <span>@$5.50</span>
+              <strong>$5.50</strong>
+            </p>
+          </div>
+          <img src="./assets/images/icon-remove-item.svg" alt="remove items">
         </div>
-        <img src="./assets/images/icon-remove-item.svg" alt="remove items">
+
+        <div class="orderTotal">
+          <div>
+            <p>Order Total</p>
+            <h4>$46.50</h4>
+          </div>
+          <p class="delivery">
+            <img src="./assets/images/icon-carbon-neutral.svg" alt="carbon neutral">
+            <span>This is a <strong>carbon-neutral</strong> delivery</span>
+          </p>
+          <button>Comfirm Order</button>
+        </div>
       </div>
     </div>
   </section>
