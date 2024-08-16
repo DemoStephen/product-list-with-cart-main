@@ -80,6 +80,7 @@ main section button {
   padding: 0.65rem;
   cursor: pointer;
   width: 100%;
+  font-family: "Red-Hat-SemiBold";
 }
 .Btn img {
   width: 1.5rem;
@@ -113,9 +114,11 @@ main section h4 span {
   width: 35%;
   height: fit-content;
   background-color: var(--Rose50);
-  padding: 0.65rem;
+  padding: 1rem;
   position: sticky;
   top: 1.5rem;
+  border-radius: 0.5rem;
+  color: var(--Rose500);
 }
 .cart h3 {
   color: var(--Red);
@@ -133,23 +136,66 @@ main section h4 span {
   width: 50%;
   margin: 1rem 0;
 }
-.cart .productInCart {
+.cart .selections {
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.cart .selections .productInCart {
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 0.75rem 0;
 }
-.cart .productInCart img {
+.cart .selections .productInCart img {
   padding: 0.35rem;
   border-radius: 50%;
   border: 1px solid var(--Rose100);
   cursor: pointer;
 }
-.cart .productInCart div p {
+.cart .selections .productInCart div h4 {
+  color: var(--Rose500);
+  font-family: "Red-Hat-Bold";
+}
+.cart .selections .productInCart div p {
   gap: 0.4rem;
   margin: 0.05rem 0 0 0;
 }
+.cart .selections .productInCart div p span:nth-child(1) {
+  color: var(--Red);
+  font-family: "Red-Hat-Bold";
+  margin: 0 0.4rem 0 0;
+}
+.cart .orderTotal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.cart .orderTotal div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart .orderTotal .delivery {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.15rem;
+}
+.cart .orderTotal img {
+  width: 1rem;
+}
+.cart .orderTotal button {
+  padding: 0.75rem;
+  border-radius: 2rem;
+  background-color: var(--Red);
+  color: var(--Rose100);
+  cursor: pointer;
+}
 button {
   outline: none;
+  border: none;
+  font-family: "Red-Hat-SemiBold";
 }
 .border {
   border: 2px solid var(--Red);
@@ -200,6 +246,9 @@ button {
   }
   main header {
     grid-area: 1/1/2/3;
+  }
+  main section p {
+    margin: -1.5rem 0 0 0;
   }
   .cart {
     width: 100%;
