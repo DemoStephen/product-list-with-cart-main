@@ -1,5 +1,4 @@
 main();
-
 async function main() {
   const products = await getData();
   const mainTag = document.querySelector("[data-main]");
@@ -16,11 +15,11 @@ async function main() {
           <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
           Add to Cart
         </span>
-        <span data-cartQuantity="cartQuantity" class="secondBtn Btn d-none">
-          <img data-decrementQuantity="decrementQuantity" src="./assets/images/icon-decrement-quantity.svg"
+        <span data-toggleQuantity="toggleQuantity" class="secondBtn Btn d-none">
+          <img data-decreaseQuantity="decreaseQuantity" src="./assets/images/icon-decrement-quantity.svg"
             alt="decrement">
           <strong data-quantity="quantity">1</strong>
-          <img data-incrementQuantity="incrementQuantity" src="./assets/images/icon-increment-quantity.svg"
+          <img data-increaseQuantity="increaseQuantity" src="./assets/images/icon-increment-quantity.svg"
             alt="increment">
         </span>
       </button>
