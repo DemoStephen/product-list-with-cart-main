@@ -4,13 +4,14 @@ async function main() {
   const mainTag = document.querySelector("[data-main]");
   for (const product of productsData) {
     let price = product.price.toFixed(2);
+
     mainTag.innerHTML += `
     <section data-eachProduct=${product.id}>
       <picture>
         <source srcset="${product.image.desktop}" media="(min-width: 1024px)">
         <source srcset="${product.image.tablet}" media="(min-width: 870px)">
         <img data-imageBorder="imageBorder-${product.id}" src="${product.image.mobile}"
-          alt="${product.name}">
+          alt="${product.name}" data-thumbnail=${product.image.thumbnail}>
       </picture>
       <button>
         <span data-add-productBtn='${product.name}' class="Btn" data-value=${product.id}>
@@ -26,14 +27,24 @@ async function main() {
         </span>
       </button>
       <p>${product.category}</p>
-      <h4>${product.name}
-        <br><span>$${price}</span>
+      <h4 data-name="${product.name}">${product.name}
+        <br><span data-price=${price}>$${price}</span>
       </h4>
     </section>
     `;
   }
+
   const products = document.querySelectorAll("[data-eachProduct]");
-  let carts = [];
+  const totalPicks = document.querySelector("[data-totalPicks]");
+  const emptyCartState = document.querySelector("[data-emptyCart]");
+  const productsInCartState = document.querySelector("[data-productSelected]");
+  const cartItems = document.querySelector("[data-cartItems]");
+  const priceTotal = document.querySelector("[data-priceTotal]");
+  const confirmOrder = document.querySelector("[data-confirmOrder]");
+
+  // stores [{name, price, quantity, thumbnail}]
+  let orders = [];
+
   for (const product of products) {
     const addToCart = product.querySelector("[data-add-productBtn]");
     const toggleQuantity = product.querySelector("[data-product-quantityBtn]");
@@ -41,29 +52,71 @@ async function main() {
     const quantityIncrease = product.querySelector("[data-increase-quantity]");
     const quantityDecrease = product.querySelector("[data-decrease-quantity]");
 
-    addToCart.addEventListener("click", (event) => {
-      event.preventDefault();
+    const name = product.querySelector("[data-name]");
+    const price = product.querySelector("[data-price]");
+    const thumbnail = product.querySelector("[data-thumbnail]");
 
+    function changeButtonState() {
       addToCart.classList.add("d-none");
       toggleQuantity.classList.remove("d-none");
-    });
 
-    quantityDecrease.addEventListener("click", () => decreaseQuantity());
-    quantityIncrease.addEventListener("click", () => increaseQuantity());
+      const order = {
+        name: name.dataset.name.trim(),
+        price: +price.dataset.price.trim(),
+        quantity: +ProductQuantity.innerText.trim(),
+        thumbnail: thumbnail.dataset.thumbnail.trim(),
+      };
+      orders.push(order);
+      console.log(orders);
+      updateCart();
+    }
+    addToCart.addEventListener("click", changeButtonState);
 
-    const increaseQuantity = () => {
+    function increaseQuantity() {
       ProductQuantity.innerText = +ProductQuantity.innerText + 1;
-    };
-    const decreaseQuantity = () => {
+      let currentName = name.dataset.name.trim();
+      const index = orders.findIndex(({ name }) => name === currentName);
+      orders[index] = {
+        ...orders[index],
+        ProductQuantity: orders[index].quantity + 1,
+      };
+      updateCart();
+    }
+    quantityIncrease.addEventListener("click", increaseQuantity);
+
+    function decreaseQuantity() {
+      let currentName = name.dataset.name.trim();
+      const index = orders.findIndex(({ name }) => name === currentName);
       if (+ProductQuantity.innerText === 1) {
         addToCart.classList.remove("d-none");
         toggleQuantity.classList.add("d-none");
         ProductQuantity.innerText = "1";
+        orders.pop(index);
+        console.log(index);
+        console.log(orders);
         return;
       }
       ProductQuantity.innerText = +ProductQuantity.innerText - 1;
-    };
+
+      orders[index] = {
+        ...orders[index],
+        ProductQuantity: orders[index].ProductQuantity - 1,
+      };
+      updateCart();
+    }
+    quantityDecrease.addEventListener("click", decreaseQuantity);
+
+    function updateCart() {
+      if (orders.length <= 0) {
+        emptyCartState.classList.remove("d-none");
+        productsInCartState.classList.add("d-none");
+        return;
+      }
+      emptyCartState.classList.add("d-none");
+      productsInCartState.classList.remove("d-none");
+    }
   }
+
   /*
   const addToCart = document.querySelectorAll("[data-addToCart]");
   const toggleQuantity = document.querySelectorAll("[data-toggleQuantity]");
