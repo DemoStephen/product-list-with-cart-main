@@ -21,24 +21,27 @@
   </main>
   <!-- Cart -->
   <section class="cart">
-    <h3>Your Cart (<span data-totalPicks="totalPicks">0</span>)</h3>
+    <h3>Your Cart (<span data-totalPicks>0</span>)</h3>
     <div>
-      <div data-emptyCart="emptyCart" class="empty d-flex">
+      <div data-emptyCart class="empty d-flex">
         <img src="./assets/images/illustration-empty-cart.svg" alt="empty cart">
         <p>Your added items will appear here</p>
       </div>
 
-      <div data-productSelected="productSelected" class="selections d-flex d-none">
+      <div data-productSelected class="selections d-flex d-none">
+        <!-- Dynamically Add Selected Items -->
+        <div data-cartItems></div>
+
         <div class="orderTotal">
           <div>
             <p>Order Total</p>
-            <h4>$46.50</h4>
+            <h4 data-priceTotal>$00.00</h4>
           </div>
           <p class="delivery">
             <img src="./assets/images/icon-carbon-neutral.svg" alt="carbon neutral">
             <span>This is a <strong>carbon-neutral</strong> delivery</span>
           </p>
-          <button>Comfirm Order</button>
+          <button data-confirmOrder>Comfirm Order</button>
         </div>
       </div>
     </div>
