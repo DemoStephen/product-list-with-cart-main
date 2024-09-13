@@ -1,27 +1,27 @@
 main();
 async function main() {
-  const products = await getData();
+  const productsData = await getData();
   const mainTag = document.querySelector("[data-main]");
-  for (const product of products) {
+  for (const product of productsData) {
     let price = product.price.toFixed(2);
     mainTag.innerHTML += `
-    <section data-eachProduct=eachProduct>
+    <section data-eachProduct=${product.id}>
       <picture>
-        <source srcset=${product.image.desktop} media="(min-width: 1024px)">
-        <source srcset=${product.image.tablet} media="(min-width: 870px)">
-        <img data-imageBorder="imageBorder" src=${product.image.mobile}
-          alt=${product.name}>
+        <source srcset="${product.image.desktop}" media="(min-width: 1024px)">
+        <source srcset="${product.image.tablet}" media="(min-width: 870px)">
+        <img data-imageBorder="imageBorder-${product.id}" src="${product.image.mobile}"
+          alt="${product.name}">
       </picture>
       <button>
-        <span data-addToCart="addToCart" class="Btn" data-value=${product.id}>
-          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon">
+        <span data-add-productBtn='${product.name}' class="Btn" data-value=${product.id}>
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon ${product.id}">
           Add to Cart
         </span>
-        <span data-toggleQuantity="toggleQuantity" class="secondBtn Btn d-none">
-          <img data-decreaseQuantity="decreaseQuantity" src="./assets/images/icon-decrement-quantity.svg"
+        <span data-product-quantityBtn class="secondBtn Btn d-none">
+          <img data-decrease-quantity src="./assets/images/icon-decrement-quantity.svg"
             alt="decrement">
-          <strong data-quantity="quantity">0</strong>
-          <img data-increaseQuantity="increaseQuantity" src="./assets/images/icon-increment-quantity.svg"
+          <strong data-product-quantity>1</strong>
+          <img data-increase-quantity src="./assets/images/icon-increment-quantity.svg"
             alt="increment">
         </span>
       </button>
@@ -32,7 +32,39 @@ async function main() {
     </section>
     `;
   }
+  const products = document.querySelectorAll("[data-eachProduct]");
+  let carts = [];
+  for (const product of products) {
+    const addToCart = product.querySelector("[data-add-productBtn]");
+    const toggleQuantity = product.querySelector("[data-product-quantityBtn]");
+    const ProductQuantity = product.querySelector("[data-product-quantity]");
+    const quantityIncrease = product.querySelector("[data-increase-quantity]");
+    const quantityDecrease = product.querySelector("[data-decrease-quantity]");
 
+    addToCart.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      addToCart.classList.add("d-none");
+      toggleQuantity.classList.remove("d-none");
+    });
+
+    quantityDecrease.addEventListener("click", () => decreaseQuantity());
+    quantityIncrease.addEventListener("click", () => increaseQuantity());
+
+    const increaseQuantity = () => {
+      ProductQuantity.innerText = +ProductQuantity.innerText + 1;
+    };
+    const decreaseQuantity = () => {
+      if (+ProductQuantity.innerText === 1) {
+        addToCart.classList.remove("d-none");
+        toggleQuantity.classList.add("d-none");
+        ProductQuantity.innerText = "1";
+        return;
+      }
+      ProductQuantity.innerText = +ProductQuantity.innerText - 1;
+    };
+  }
+  /*
   const addToCart = document.querySelectorAll("[data-addToCart]");
   const toggleQuantity = document.querySelectorAll("[data-toggleQuantity]");
   let quantity = document.querySelectorAll("[data-quantity]");
@@ -94,6 +126,7 @@ async function main() {
 
     totalPicks.innerText = productInCart.length;
   }
+    */
 }
 async function getData() {
   const res = await fetch("./data.json");
