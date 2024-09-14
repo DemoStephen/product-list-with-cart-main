@@ -29,6 +29,11 @@
   box-sizing: border-box;
   font-family: "Red-Hat";
 }
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
 body {
   font-size: 1rem;
   width: clamp(64rem, calc(100% - 40px), 75rem);
@@ -145,6 +150,9 @@ main section h4 span {
   justify-content: space-between;
   align-items: center;
 }
+.cart .selections .productInCart + .productInCart {
+  margin: 1rem 0 0 0;
+}
 .cart .selections .productInCart img {
   padding: 0.35rem;
   border-radius: 50%;
@@ -192,6 +200,10 @@ main section h4 span {
   color: var(--Rose100);
   cursor: pointer;
 }
+.dialog {
+  width: 25rem;
+  margin: auto;
+}
 button {
   outline: none;
   border: none;
@@ -199,9 +211,6 @@ button {
 }
 .border {
   border: 2px solid var(--Red);
-}
-.transBorder {
-  border: 2px solid transparent;
 }
 .d-flex {
   display: flex;
