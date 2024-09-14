@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frontend Mentor | Product list with cart">
+  <meta name="author" content="Adewale Stephen">
+  <meta name="keywords" content="Adewale Stephen, Stephen, Project, Product list, Product list with cart">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <title>Frontend Mentor | Product list with cart</title>
   <link rel="stylesheet" href="./style.css">
@@ -12,7 +15,7 @@
 
 <body class="d-flex">
   <!-- All Products -->
-  <main data-main="mainTag">
+  <main data-main>
     <!-- Header -->
     <header>
       <h1>Desserts</h1>
@@ -46,6 +49,20 @@
       </div>
     </div>
   </section>
+
+  <dialog class="dialog" open>
+    <img src="./assets/images/icon-order-confirmed.svg" alt="green checkmark" />
+    <h1>Order Confirmed</h1>
+    <p>We hope you enjoy your food!</p>
+
+    <div data-receipt></div>
+    <p>
+      <span>Order Total</span>
+      <span>$00.00</span>
+    </p>
+
+    <button type="button">start new order</button>
+  </dialog>
   <script src="main.js"></script>
   <!-- javaScript (Functionality Here) -->
 </body>
