@@ -4,14 +4,12 @@ async function main() {
   const mainTag = document.querySelector("[data-main]");
   for (const product of productsData) {
     let price = product.price.toFixed(2);
-
     mainTag.innerHTML += `
-    <section data-eachProduct=${product.id}>
+    <section data-eachProduct="${product.name}">
       <picture>
-        <source srcset="${product.image.desktop}" media="(min-width: 1024px)">
-        <source srcset="${product.image.tablet}" media="(min-width: 870px)">
-        <img data-imageBorder="imageBorder-${product.id}" src="${product.image.mobile}"
-          alt="${product.name}" data-thumbnail=${product.image.thumbnail}>
+        <source srcset="${product.image.tablet}" media="(min-width: 1024px)">
+        <source srcset="${product.image.mobile}" media="(min-width: 870px)">
+        <img data-image-border src="${product.image.desktop}" alt="${product.desktop}" data-thumbnail="${product.image.thumbnail}">
       </picture>
       <button>
         <span data-add-productBtn='${product.name}' class="Btn" data-value=${product.id}>
@@ -19,11 +17,9 @@ async function main() {
           Add to Cart
         </span>
         <span data-product-quantityBtn class="secondBtn Btn d-none">
-          <img data-decrease-quantity src="./assets/images/icon-decrement-quantity.svg"
-            alt="decrement">
+          <img data-decrease-quantity data-decrease-name="${product.name}" src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
           <strong data-product-quantity>1</strong>
-          <img data-increase-quantity src="./assets/images/icon-increment-quantity.svg"
-            alt="increment">
+          <img data-increase-quantity src="./assets/images/icon-increment-quantity.svg" alt="increment">
         </span>
       </button>
       <p>${product.category}</p>
@@ -33,7 +29,6 @@ async function main() {
     </section>
     `;
   }
-
   const products = document.querySelectorAll("[data-eachProduct]");
   const totalPicks = document.querySelector("[data-totalPicks]");
   const emptyCartState = document.querySelector("[data-emptyCart]");
@@ -42,15 +37,15 @@ async function main() {
   const priceTotal = document.querySelector("[data-priceTotal]");
   const confirmOrder = document.querySelector("[data-confirmOrder]");
 
-  // stores [{name, price, quantity, thumbnail}]
+  // Stores [{name, price, quantity, thumbnail}]
   let orders = [];
-
   for (const product of products) {
     const addToCart = product.querySelector("[data-add-productBtn]");
     const toggleQuantity = product.querySelector("[data-product-quantityBtn]");
     const ProductQuantity = product.querySelector("[data-product-quantity]");
     const quantityIncrease = product.querySelector("[data-increase-quantity]");
     const quantityDecrease = product.querySelector("[data-decrease-quantity]");
+    const imgBorder = product.querySelector("[data-image-border]");
 
     const name = product.querySelector("[data-name]");
     const price = product.querySelector("[data-price]");
@@ -59,7 +54,7 @@ async function main() {
     function changeButtonState() {
       addToCart.classList.add("d-none");
       toggleQuantity.classList.remove("d-none");
-
+      imgBorder.classList.add("border");
       const order = {
         name: name.dataset.name.trim(),
         price: +price.dataset.price.trim(),
@@ -67,40 +62,40 @@ async function main() {
         thumbnail: thumbnail.dataset.thumbnail.trim(),
       };
       orders.push(order);
-      console.log(orders);
       updateCart();
     }
     addToCart.addEventListener("click", changeButtonState);
 
     function increaseQuantity() {
       ProductQuantity.innerText = +ProductQuantity.innerText + 1;
-      let currentName = name.dataset.name.trim();
-      const index = orders.findIndex(({ name }) => name === currentName);
+      let productName = name.dataset.name.trim();
+      const index = orders.findIndex(({ name }) => name === productName);
       orders[index] = {
         ...orders[index],
-        ProductQuantity: orders[index].quantity + 1,
+        quantity: orders[index].quantity + 1,
       };
+
       updateCart();
     }
     quantityIncrease.addEventListener("click", increaseQuantity);
 
     function decreaseQuantity() {
-      let currentName = name.dataset.name.trim();
-      const index = orders.findIndex(({ name }) => name === currentName);
-      if (+ProductQuantity.innerText === 1) {
+      let productName = name.dataset.name.trim();
+      const index = orders.findIndex(({ name }) => name === productName);
+      if (ProductQuantity.innerText.trim() === "1") {
         addToCart.classList.remove("d-none");
         toggleQuantity.classList.add("d-none");
-        ProductQuantity.innerText = "1";
-        orders.pop(index);
-        console.log(index);
-        console.log(orders);
+        imgBorder.classList.remove("border");
+
+        const decreaseName = product.querySelector("[data-decrease-name]");
+        const name = decreaseName.dataset.decreaseName;
+        deleteItemInCart(name);
         return;
       }
       ProductQuantity.innerText = +ProductQuantity.innerText - 1;
-
       orders[index] = {
         ...orders[index],
-        ProductQuantity: orders[index].ProductQuantity - 1,
+        quantity: orders[index].quantity - 1,
       };
       updateCart();
     }
@@ -110,76 +105,77 @@ async function main() {
       if (orders.length <= 0) {
         emptyCartState.classList.remove("d-none");
         productsInCartState.classList.add("d-none");
+        cartItems.innerHTML = "";
+        totalPicks.innerText = "0";
+        priceTotal.innerText = "$00.00";
         return;
       }
       emptyCartState.classList.add("d-none");
       productsInCartState.classList.remove("d-none");
-    }
-  }
 
-  /*
-  const addToCart = document.querySelectorAll("[data-addToCart]");
-  const toggleQuantity = document.querySelectorAll("[data-toggleQuantity]");
-  let quantity = document.querySelectorAll("[data-quantity]");
-  const decreaseQuantity = document.querySelectorAll("[data-decreaseQuantity]");
-  const increaseQuantity = document.querySelectorAll("[data-increaseQuantity]");
-  const eachProduct = document.querySelectorAll("[data-eachProduct]");
-  const eachProductId = document.querySelectorAll("[data-value]");
-  const productSelected = document.querySelector("[data-productSelected]");
-  const emptyCart = document.querySelector("[data-emptyCart]");
-  quantity.forEach((value, index) => {
-    decreaseQuantity[index].addEventListener("click", (event) => {
-      let output = +value.innerText;
-      if (output < 2) {
-        toggleQuantity[index].classList.add("d-none");
-        addToCart[index].classList.remove("d-none");
-        return (output = 1);
+      let sum = 0;
+      let costTotal = 0;
+
+      cartItems.innerHTML = "";
+      for (const order of orders) {
+        sum = sum + order.quantity;
+        costTotal = costTotal + order.quantity * order.price;
+
+        let item = document.createElement("div");
+        item.setAttribute("class", "productInCart d-flex");
+        item.innerHTML = `
+          <div>
+            <h4>${order.name}</h4>
+            <p class="d-flex">
+              <span data-cartQuantity=cartQuantity>${order.quantity}x</span>
+              <span>@$${order.price.toFixed(2)}</span>
+              <strong>$${(order.quantity * order.price).toFixed(2)}</strong>
+            </p>
+          </div>
+          <img data-delete="${
+            order.name
+          } " src="./assets/images/icon-remove-item.svg" alt="remove ${
+          order.name
+        }">
+        `;
+        cartItems.prepend(item);
       }
-      output--;
-      value.innerText = output;
-    });
-    increaseQuantity[index].addEventListener("click", (event) => {
-      let output = +value.innerText;
-      output++;
-      value.innerText = output;
-    });
-  });
+      totalPicks.innerText = `${sum}`;
+      priceTotal.innerText = `$${costTotal.toFixed(2)}`;
+      const deleteItems = document.querySelectorAll("[data-delete]");
+      deleteItems.forEach((item, index) => {
+        const name = item.dataset.delete.trim();
+        item.addEventListener("click", () => deleteItemInCart(name));
+      });
+    }
 
-  addToCart.forEach((product, index) => {
-    product.addEventListener("click", (event) => {
-      event.preventDefault();
-      quantity[index].innerText = 1;
-      product.classList.add("d-none");
-      // let selectedProduct = eachProductId[index].getAttribute("data-value");
-      let divElement = document.createElement("div");
-      divElement.setAttribute("data-productInCart", "productInCart");
-      divElement.setAttribute("class", "productInCart d-flex");
-
-      divElement.innerHTML = ` 
-      <div>                       
-        <h4>${products[index].name}</h4>
-        <p class="d-flex">
-          <span data-cartQuantity=cartQuantity>1x</span>
-          <span>@$${products[index].price.toFixed(2)}</span>
-          <strong>$5.50</strong>
-        </p>
-      </div>
-      <img src="./assets/images/icon-remove-item.svg" alt="remove items">
-      `;
-      emptyCart.classList.add("d-none");
-      productSelected.classList.remove("d-none");
-      productSelected.prepend(divElement);
-      toggleQuantity[index].classList.remove("d-none");
+    function deleteItemInCart(name) {
+      const newOrders = orders.filter(
+        ({ name: orderName }) => orderName !== name
+      );
+      orders = [...newOrders];
       updateCart();
-    });
-  });
-  function updateCart(result) {
-    const productInCart = document.querySelectorAll("[data-productInCart]");
-    const totalPicks = document.querySelector("[data-totalPicks]");
 
-    totalPicks.innerText = productInCart.length;
+      products.forEach((product) => {
+        const addToCartBtn = product.querySelector("[data-add-productBtn]");
+        const toggleBtn = product.querySelector("[data-product-quantityBtn]");
+        const productName = product.querySelector("[data-name]").dataset.name;
+        const imgBorder = product.querySelector("[data-image-border]");
+
+        if (name === productName) {
+          addToCartBtn.classList.remove("d-none");
+          toggleBtn.classList.add("d-none");
+          product.querySelector("[data-product-quantity]").innerText = "1";
+          imgBorder.classList.remove("border");
+        }
+      });
+    }
+
+    function confirmOrders() {
+      let sum = 0;
+    }
+    confirmOrder.addEventListener("click", confirmOrders);
   }
-    */
 }
 async function getData() {
   const res = await fetch("./data.json");
