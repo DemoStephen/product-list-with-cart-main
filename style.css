@@ -61,18 +61,18 @@ main header {
 h1 {
   font-family: "Red-Hat-Bold";
 }
-main section {
+main article {
   width: 100%;
 }
-main section picture {
+main article picture {
   width: 100%;
 }
-main section picture img {
+main article picture img {
   border: 2px solid transparent;
   border-radius: 0.75rem;
   width: 100%;
 }
-main section button {
+main article button {
   width: 70%;
   margin: 0 15%;
   transform: translateY(-2.5em);
@@ -113,16 +113,16 @@ main section button {
   filter: invert(50%);
   transition: 0.5s;
 }
-main section p {
+main article p {
   margin: -1.25rem 0 0 0;
   font-size: 0.85rem;
   color: var(--Rose500);
 }
-main section h4 {
+main article h4 {
   color: var(--Rose900);
   font-family: "Red-Hat-SemiBold";
 }
-main section h4 span {
+main article h4 span {
   color: var(--Red);
 }
 .cart {
@@ -286,7 +286,7 @@ button {
     margin: 2rem 0;
     padding: 0 5%;
   }
-  main section button {
+  main article button {
     width: 80%;
     margin: 0 10%;
   }
@@ -297,7 +297,7 @@ button {
   main header {
     grid-area: 1/1/2/3;
   }
-  main section p {
+  main article p {
     margin: -1.5rem 0 0 0;
   }
   .cart {
@@ -313,7 +313,7 @@ button {
     margin: 2rem 0;
     padding: 0 5%;
   }
-  main section button {
+  main article button {
     width: 60%;
     margin: 0 20%;
   }
@@ -331,7 +331,7 @@ button {
 }
 
 @media (max-width: 18.75rem) {
-  main section button {
+  main article button {
     width: 80%;
     margin: 0 10%;
   }
