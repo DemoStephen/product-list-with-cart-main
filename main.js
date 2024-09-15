@@ -5,7 +5,7 @@ async function main() {
   for (const product of productsData) {
     let price = product.price.toFixed(2);
     mainTag.innerHTML += `
-    <section data-eachProduct="${product.name}">
+    <article data-eachProduct="${product.name}">
       <picture>
         <source srcset="${product.image.tablet}" media="(min-width: 1024px)">
         <source srcset="${product.image.mobile}" media="(min-width: 870px)">
@@ -26,7 +26,7 @@ async function main() {
       <h4 data-name="${product.name}">${product.name}
         <br><span data-price=${price}>$${price}</span>
       </h4>
-    </section>
+    </article>
     `;
   }
   const products = document.querySelectorAll("[data-eachProduct]");
