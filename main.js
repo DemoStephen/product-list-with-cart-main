@@ -37,6 +37,11 @@ async function main() {
   const priceTotal = document.querySelector("[data-priceTotal]");
   const confirmOrder = document.querySelector("[data-confirmOrder]");
 
+  const modal = document.querySelector("[data-modal]");
+  const receipt = document.querySelector("[data-receipt]");
+  const total = document.querySelector("[data-total]");
+  const reset = document.querySelector("[data-reset]");
+
   // Stores [{name, price, quantity, thumbnail}]
   let orders = [];
   for (const product of products) {
@@ -173,8 +178,58 @@ async function main() {
 
     function confirmOrders() {
       let sum = 0;
+      receipt.innerHTML = "";
+      for (const order of orders) {
+        sum = sum + order.quantity * order.price;
+        const item = document.createElement("div");
+        const hr = document.createElement("hr");
+        item.classList.add("eachProduct");
+        item.classList.add("d-flex");
+        item.innerHTML = `
+        <div class="d-flex eachProductDetail">
+          <img src="${order.thumbnail}" alt="${order.name}">
+          <div>
+            <h4>${order.name}</h4>
+            <p>
+              <span>${order.quantity}x</span>
+              <strong>@$${order.price.toFixed(2)}</strong>
+            </p>
+          </div>
+        </div>
+        <h3>$${(order.price * order.quantity).toFixed(2)}</h3>
+        `;
+        receipt.prepend(hr);
+        receipt.prepend(item);
+      }
+      total.innerText = `$${sum.toFixed(2)}`;
+      modal.showModal();
     }
     confirmOrder.addEventListener("click", confirmOrders);
+
+    function resetCart() {
+      for (const product of products) {
+        const addToCart = product.querySelector("[data-add-productBtn]");
+        const toggleQuantity = product.querySelector(
+          "[data-product-quantityBtn]"
+        );
+        const ProductQuantity = product.querySelector(
+          "[data-product-quantity]"
+        );
+        const imgBorder = product.querySelector("[data-image-border]");
+
+        toggleQuantity.classList.add("d-none");
+        if (addToCart.classList.contains("d-none")) {
+          addToCart.classList.remove("d-none");
+          imgBorder.classList.remove("border");
+        }
+        ProductQuantity.innerText = 1;
+      }
+      orders = [];
+      updateCart();
+      modal.close();
+    }
+    reset.addEventListener("click", resetCart);
+    modal.addEventListener("close", resetCart);
   }
 }
 async function getData() {
