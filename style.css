@@ -21,6 +21,10 @@
   --Rose500: hsl(12, 20%, 44%);
   --Rose900: hsl(14, 65%, 9%);
 }
+::backdrop {
+  background: black;
+  opacity: 0.5;
+}
 *,
 *::after,
 *::before {
@@ -35,9 +39,12 @@ html {
   text-size-adjust: none;
 }
 body {
+  background-color: var(--Rose100);
+  padding: 0 0 1rem 0;
+}
+.body {
   font-size: 1rem;
   width: clamp(64rem, calc(100% - 40px), 75rem);
-  background-color: var(--Rose100);
   gap: 1rem;
   margin: 0 auto 3rem auto;
   padding: 0 2%;
@@ -50,16 +57,17 @@ main {
   gap: 1rem;
 }
 main header {
-  color: var(--Rose500);
+  color: var(--Rose900);
   grid-area: 1/ 1/ 2/ 4;
   position: sticky;
   top: 0;
   padding: 1rem 0;
   background-color: var(--Rose100);
-  z-index: 10000;
+  z-index: 10;
 }
 h1 {
   font-family: "Red-Hat-Bold";
+  font-size: 2rem;
 }
 main article {
   width: 100%;
@@ -213,42 +221,77 @@ main article h4 span {
   cursor: pointer;
 }
 .dialog {
-  /* position: fixed; */
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
-  width: 30rem;
+  width: 28rem;
   margin: auto;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   border-radius: 1rem;
   border: none;
-  /* margin: auto;
-  height: auto; */
+  z-index: 10;
+  background-color: var(--Rose50);
+}
+.dialog header {
+  margin: 0 0 0.75rem 0;
+  color: var(--Rose900);
+}
+.dialog header p {
+  color: var(--Rose500);
 }
 .productContainer {
   flex-direction: column;
-  background-color: var(--Rose100);
-  padding: 0 1rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+.productContainer hr {
+  margin: 0.85rem 0;
+  border: 0.05rem solid var(--Rose100);
 }
 .eachProduct {
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
-}
-.eachProduct + .eachProduct {
-  border-top: 2px solid var(--Rose500);
 }
 .eachProductDetail {
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+}
+.eachProductDetail span {
+  color: var(--Red);
+  font-family: "Red-Hat-Bold";
+}
+.eachProductDetail strong {
+  color: var(--Rose500);
 }
 .eachProductDetail img {
-  width: 3.75rem;
+  width: 3.5rem;
   border-radius: 0.5rem;
+}
+.totalPrice {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+}
+.dialog h2 {
+  font-size: 1.75rem;
+  font-family: "Red-Hat-Bold";
+}
+.dialog h3,
+.dialog h4 {
+  color: var(--Rose500);
+}
+
+.dialog button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: var(--Red);
+  color: var(--Rose50);
+  font-size: 1rem;
+  margin: 0.75rem 0 0 0;
 }
 button {
   outline: none;
   border: none;
   font-family: "Red-Hat-SemiBold";
+  cursor: pointer;
 }
 .border {
   border: 2px solid var(--Red);
@@ -280,7 +323,7 @@ button {
 }
 /* Media Query Mobile (LandScape)*/
 @media (max-width: 54.375rem) {
-  body {
+  .body {
     flex-direction: column;
     width: 100%;
     margin: 2rem 0;
@@ -307,7 +350,7 @@ button {
 }
 /* Media Query Mobile (Potraite)*/
 @media (max-width: 31.25rem) {
-  body {
+  .body {
     flex-direction: column;
     width: 100%;
     margin: 2rem 0;
