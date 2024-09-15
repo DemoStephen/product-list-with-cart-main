@@ -56,6 +56,7 @@ async function main() {
     const price = product.querySelector("[data-price]");
     const thumbnail = product.querySelector("[data-thumbnail]");
 
+    // Change Button State Function
     function changeButtonState() {
       addToCart.classList.add("d-none");
       toggleQuantity.classList.remove("d-none");
@@ -71,6 +72,7 @@ async function main() {
     }
     addToCart.addEventListener("click", changeButtonState);
 
+    // Increase Quantity Function
     function increaseQuantity() {
       ProductQuantity.innerText = +ProductQuantity.innerText + 1;
       let productName = name.dataset.name.trim();
@@ -84,6 +86,7 @@ async function main() {
     }
     quantityIncrease.addEventListener("click", increaseQuantity);
 
+    // Decrease Quantity Function
     function decreaseQuantity() {
       let productName = name.dataset.name.trim();
       const index = orders.findIndex(({ name }) => name === productName);
@@ -106,6 +109,7 @@ async function main() {
     }
     quantityDecrease.addEventListener("click", decreaseQuantity);
 
+    // Update Cart Function
     function updateCart() {
       if (orders.length <= 0) {
         emptyCartState.classList.remove("d-none");
@@ -154,6 +158,7 @@ async function main() {
       });
     }
 
+    // Delete Item In Cart Function
     function deleteItemInCart(name) {
       const newOrders = orders.filter(
         ({ name: orderName }) => orderName !== name
@@ -176,6 +181,7 @@ async function main() {
       });
     }
 
+    // Confirm Orders Function
     function confirmOrders() {
       let sum = 0;
       receipt.innerHTML = "";
@@ -206,6 +212,7 @@ async function main() {
     }
     confirmOrder.addEventListener("click", confirmOrders);
 
+    // Reset Function
     function resetCart() {
       for (const product of products) {
         const addToCart = product.querySelector("[data-add-productBtn]");
