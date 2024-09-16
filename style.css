@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
   font-family: "Red-Hat";
   src: url("./assets/fonts/static/RedHatText-Regular.ttf");
@@ -11,6 +12,7 @@
   src: url("./assets/fonts/static/RedHatText-Bold.ttf");
 }
 
+/* Variables */
 :root {
   --Red: hsl(14, 86%, 42%);
   --Green: hsl(159, 69%, 38%);
@@ -21,10 +23,8 @@
   --Rose500: hsl(12, 20%, 44%);
   --Rose900: hsl(14, 65%, 9%);
 }
-::backdrop {
-  background: black;
-  opacity: 0.5;
-}
+
+/* Universal selector to remove default styling */
 *,
 *::after,
 *::before {
@@ -37,14 +37,21 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
+
+::backdrop {
+  background: rgba(38, 15, 8, 0.35);
+}
+
 body {
   background-color: var(--Rose100);
   padding: 0 0 1rem 0;
 }
 .body {
   font-size: 1rem;
-  width: clamp(64rem, calc(100% - 40px), 75rem);
+  width: clamp(64rem, calc(100% - 40px), 80rem);
   gap: 1rem;
   margin: 0 auto 3rem auto;
   padding: 0 2%;
@@ -61,7 +68,7 @@ main header {
   grid-area: 1/ 1/ 2/ 4;
   position: sticky;
   top: 0;
-  padding: 1rem 0;
+  padding: 1.5rem 0 1rem 0;
   background-color: var(--Rose100);
   z-index: 10;
 }
@@ -240,6 +247,9 @@ main article h4 span {
   flex-direction: column;
   padding: 0.75rem;
   border-radius: 0.5rem;
+  max-height: 16rem;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 .productContainer hr {
   margin: 0.85rem 0;
@@ -293,6 +303,7 @@ button {
   font-family: "Red-Hat-SemiBold";
   cursor: pointer;
 }
+
 .border {
   border: 2px solid var(--Red);
 }
@@ -305,6 +316,7 @@ button {
 .d-none {
   display: none;
 }
+
 /* Media Query Tablet */
 @media (max-width: 64rem) {
   body {
@@ -321,6 +333,7 @@ button {
     width: 45%;
   }
 }
+
 /* Media Query Mobile (LandScape)*/
 @media (max-width: 54.375rem) {
   .body {
@@ -348,6 +361,7 @@ button {
     position: unset;
   }
 }
+
 /* Media Query Mobile (Potraite)*/
 @media (max-width: 31.25rem) {
   .body {
@@ -373,6 +387,7 @@ button {
   }
 }
 
+/* Media Query Smart Watch */
 @media (max-width: 18.75rem) {
   main article button {
     width: 80%;
