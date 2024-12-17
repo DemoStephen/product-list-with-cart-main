@@ -1,34 +1,41 @@
 main();
+
 async function main() {
+  // Store product data stored in the json file to a const variabled called productData
   const productsData = await getData();
+  // I selected the main tag that stored all product in my HTML
   const mainTag = document.querySelector("[data-main]");
-  for (const product of productsData) {
+
+  // Updating the DOM here by mapping through all products data
+  productsData.map((product) => {
     let price = product.price.toFixed(2);
+    // I updated the InnerHTML of the main tag by providing all products data
     mainTag.innerHTML += `
-    <article data-eachProduct="${product.name}">
-      <picture>
-        <source srcset="${product.image.tablet}" media="(min-width: 1024px)">
-        <source srcset="${product.image.mobile}" media="(min-width: 870px)">
-        <img data-image-border src="${product.image.desktop}" alt="${product.desktop}" data-thumbnail="${product.image.thumbnail}">
-      </picture>
-      <button>
-        <span data-add-productBtn='${product.name}' class="Btn" data-value=${product.id}>
-          <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon ${product.id}">
-          Add to Cart
-        </span>
-        <span data-product-quantityBtn class="secondBtn Btn d-none">
-          <img data-decrease-quantity data-decrease-name="${product.name}" src="./assets/images/icon-decrement-quantity.svg" alt="decrement">
-          <strong data-product-quantity>1</strong>
-          <img data-increase-quantity src="./assets/images/icon-increment-quantity.svg" alt="increment">
-        </span>
-      </button>
-      <p>${product.category}</p>
-      <h4 data-name="${product.name}">${product.name}
-        <br><span data-price=${price}>$${price}</span>
-      </h4>
-    </article>
-    `;
-  }
+      <article data-eachProduct="${product.name}">
+        <picture>
+          <source srcset="${product.image.tablet}" media="(min-width: 1024px)">
+          <source srcset="${product.image.mobile}" media="(min-width: 870px)">
+          <img data-image-border src="${product.image.desktop}" alt="${product.desktop}" data-thumbnail="${product.image.thumbnail}">
+        </picture>
+        <button>
+          <span data-add-productBtn='${product.name}' class="Btn" data-value=${product.id}>
+            <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon ${product.id}">
+            Add to Cart
+          </span>
+          <span data-product-quantityBtn class="secondBtn Btn d-none">
+            <img data-decrease-quantity data-decrease-name="${product.name}" src="/assets/images/icon-decrement-quantity.svg" alt="decrement icon">
+            <strong data-product-quantity>1</strong>
+            <img data-increase-quantity src="/assets/images/icon-increment-quantity.svg" alt="increment icon">
+          </span>
+        </button>
+        <p>${product.category}</p>
+        <h4 data-name="${product.name}">${product.name}
+          <br><span data-price=${price}>$${price}</span>
+        </h4>
+      </article>
+      `;
+  });
+
   const products = document.querySelectorAll("[data-eachProduct]");
   const totalPicks = document.querySelector("[data-totalPicks]");
   const emptyCartState = document.querySelector("[data-emptyCart]");
@@ -42,8 +49,10 @@ async function main() {
   const total = document.querySelector("[data-total]");
   const reset = document.querySelector("[data-reset]");
 
-  // Stores [{name, price, quantity, thumbnail}]
+  // orders would look like this after users add an Item to cart: [{name, price, quantity, thumbnail}]
   let orders = [];
+
+  // Updating products Individually
   for (const product of products) {
     const addToCart = product.querySelector("[data-add-productBtn]");
     const toggleQuantity = product.querySelector("[data-product-quantityBtn]");
@@ -56,7 +65,10 @@ async function main() {
     const price = product.querySelector("[data-price]");
     const thumbnail = product.querySelector("[data-thumbnail]");
 
-    // Change Button State Function
+    /**
+     * Change Button State Function
+     * Add product to cart when add to cart button is being selected
+     */
     function changeButtonState() {
       addToCart.classList.add("d-none");
       toggleQuantity.classList.remove("d-none");
@@ -67,6 +79,10 @@ async function main() {
         quantity: +ProductQuantity.innerText.trim(),
         thumbnail: thumbnail.dataset.thumbnail.trim(),
       };
+      /**
+       * Update Orders when a product is being selected
+       * Updated Cart when a product is being selected
+       */
       orders.push(order);
       updateCart();
     }
@@ -76,12 +92,13 @@ async function main() {
     function increaseQuantity() {
       ProductQuantity.innerText = +ProductQuantity.innerText + 1;
       let productName = name.dataset.name.trim();
+      // Get Index of the product whose quantity is being Increased
       const index = orders.findIndex(({ name }) => name === productName);
       orders[index] = {
         ...orders[index],
         quantity: orders[index].quantity + 1,
       };
-
+      // Update cart when product quantity is being Increased
       updateCart();
     }
     quantityIncrease.addEventListener("click", increaseQuantity);
@@ -89,7 +106,11 @@ async function main() {
     // Decrease Quantity Function
     function decreaseQuantity() {
       let productName = name.dataset.name.trim();
+      // Get Index of the product whose quantity is being Decreased
       const index = orders.findIndex(({ name }) => name === productName);
+      /**
+       *Remove Item from Cart if the quatity is 1
+       */
       if (ProductQuantity.innerText.trim() === "1") {
         addToCart.classList.remove("d-none");
         toggleQuantity.classList.add("d-none");
@@ -100,17 +121,20 @@ async function main() {
         deleteItemInCart(name);
         return;
       }
+      // Decrease quantity by one
       ProductQuantity.innerText = +ProductQuantity.innerText - 1;
       orders[index] = {
         ...orders[index],
         quantity: orders[index].quantity - 1,
       };
+      // Update Cart
       updateCart();
     }
     quantityDecrease.addEventListener("click", decreaseQuantity);
 
-    // Update Cart Function
+    // Cart Update Function
     function updateCart() {
+      // Displays Empty cart state when there is no item/items selected
       if (orders.length <= 0) {
         emptyCartState.classList.remove("d-none");
         productsInCartState.classList.add("d-none");
@@ -126,6 +150,12 @@ async function main() {
       let costTotal = 0;
 
       cartItems.innerHTML = "";
+      // If items selected is greater than zero do this
+      /**
+       * Update cart section
+       * Update total price for Items selected
+       * Update quantiti of price selected
+       */
       for (const order of orders) {
         sum = sum + order.quantity;
         costTotal = costTotal + order.quantity * order.price;
@@ -152,13 +182,18 @@ async function main() {
       totalPicks.innerText = `${sum}`;
       priceTotal.innerText = `$${costTotal.toFixed(2)}`;
       const deleteItems = document.querySelectorAll("[data-delete]");
+      // Calling delete Items Function
       deleteItems.forEach((item, index) => {
         const name = item.dataset.delete.trim();
         item.addEventListener("click", () => deleteItemInCart(name));
       });
     }
 
-    // Delete Item In Cart Function
+    /**
+     * Delete Item Function
+     * Update Cart when Items is being called
+     * Update Products when Items is being called
+     */
     function deleteItemInCart(name) {
       const newOrders = orders.filter(
         ({ name: orderName }) => orderName !== name
@@ -239,8 +274,10 @@ async function main() {
     modal.addEventListener("close", resetCart);
   }
 }
+
+// async function to get product details from the data.json file
 async function getData() {
-  const res = await fetch("./data.json");
+  const res = await fetch("/data.json");
   const data = await res.json();
   return data;
 }
