@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Active Design State](./design/active-states.jpg)
+![Active Design State](/design/active-states.jpg)
 
 ### Links
 
