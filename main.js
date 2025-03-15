@@ -19,13 +19,13 @@ async function main() {
         </picture>
         <button>
           <span data-add-productBtn='${product.name}' class="Btn" data-value=${product.id}>
-            <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart icon ${product.id}">
+            <img src="/assets/images/icon-add-to-cart.svg" alt="add to cart icon ${product.id}">
             Add to Cart
           </span>
           <span data-product-quantityBtn class="secondBtn Btn d-none">
-            <img data-decrease-quantity data-decrease-name="${product.name}" src="./assets/images/icon-decrement-quantity.svg" alt="decrement icon">
+            <img data-decrease-quantity data-decrease-name="${product.name}" src="/assets/images/icon-decrement-quantity.svg" alt="decrement icon">
             <strong data-product-quantity>1</strong>
-            <img data-increase-quantity src="./assets/images/icon-increment-quantity.svg" alt="increment icon">
+            <img data-increase-quantity src="/assets/images/icon-increment-quantity.svg" alt="increment icon">
           </span>
         </button>
         <p>${product.category}</p>
@@ -173,7 +173,7 @@ async function main() {
           </div>
           <img data-delete="${
             order.name
-          } " src="./assets/images/icon-remove-item.svg" alt="remove ${
+          } " src="/assets/images/icon-remove-item.svg" alt="remove ${
           order.name
         }">
         `;
