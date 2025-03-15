@@ -1,6 +1,6 @@
 # Product list with cart solution
 
-This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d).
+This is a solution to the Product list with cart challenge on [Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d).
 
 ## Table of contents
 
@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Active Design State](/design/active-states.jpg)
+![Active Design State](/preview.jpg)
 
 ### Links
 
@@ -45,6 +45,7 @@ Users should be able to:
 
 ## Author
 
-- Website - [https://codewithstephen.com/](https://codewithstephen.com/)
-- Frontend Mentor - [@codewithstephen](https://www.frontendmentor.io/profile/codewithstephen)
-- Twitter - [@codewithstephen](https://www.twitter.com/codewithstephen)
+- Website - [https://codewithstephen.com/](https://codewithstephen.vercel.app/)
+- Twitter - [@codewithstephen](https://x.com/codewithstephen)
+- Facebook - [@Stephen Adewale Nifemi](https://web.facebook.com/Inventorstephen/)
+- Frontend Mentor - [@codewithstephen](https://www.frontendmentor.io/profile/demostephen)
