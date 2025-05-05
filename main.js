@@ -49,10 +49,10 @@ async function main() {
   const total = document.querySelector("[data-total]");
   const reset = document.querySelector("[data-reset]");
 
-  // orders would look like this after users add an Item to cart: [{name, price, quantity, thumbnail}]
+  // orders array would contains object/objects in this format [{name, price, quantity, thumbnail}]
   let orders = [];
 
-  // Updating products Individually
+  // Update Cart when a product is being selected
   for (const product of products) {
     const addToCart = product.querySelector("[data-add-productBtn]");
     const toggleQuantity = product.querySelector("[data-product-quantityBtn]");
@@ -65,10 +65,7 @@ async function main() {
     const price = product.querySelector("[data-price]");
     const thumbnail = product.querySelector("[data-thumbnail]");
 
-    /**
-     * Change Button State Function
-     * Add product to cart when add to cart button is being selected
-     */
+    // Add to Cart Function
     function changeButtonState() {
       addToCart.classList.add("d-none");
       toggleQuantity.classList.remove("d-none");
@@ -79,16 +76,13 @@ async function main() {
         quantity: +ProductQuantity.innerText.trim(),
         thumbnail: thumbnail.dataset.thumbnail.trim(),
       };
-      /**
-       * Update Orders when a product is being selected
-       * Updated Cart when a product is being selected
-       */
+
       orders.push(order);
       updateCart();
     }
     addToCart.addEventListener("click", changeButtonState);
 
-    // Increase Quantity Function
+    // Toggle Increment Quantity Function
     function increaseQuantity() {
       ProductQuantity.innerText = +ProductQuantity.innerText + 1;
       let productName = name.dataset.name.trim();
@@ -103,14 +97,13 @@ async function main() {
     }
     quantityIncrease.addEventListener("click", increaseQuantity);
 
-    // Decrease Quantity Function
+    // Toggle Decrement Quantity Function
     function decreaseQuantity() {
       let productName = name.dataset.name.trim();
       // Get Index of the product whose quantity is being Decreased
       const index = orders.findIndex(({ name }) => name === productName);
-      /**
-       *Remove Item from Cart if the quatity is 1
-       */
+
+      // Remove product from cart if quantity is 1
       if (ProductQuantity.innerText.trim() === "1") {
         addToCart.classList.remove("d-none");
         toggleQuantity.classList.add("d-none");
@@ -121,20 +114,21 @@ async function main() {
         deleteItemInCart(name);
         return;
       }
-      // Decrease quantity by one
+      // Decrease Product Quantity
       ProductQuantity.innerText = +ProductQuantity.innerText - 1;
       orders[index] = {
         ...orders[index],
         quantity: orders[index].quantity - 1,
       };
-      // Update Cart
+      // Update Product Quantity in the cart when product quantity is being Decreased
       updateCart();
     }
     quantityDecrease.addEventListener("click", decreaseQuantity);
 
-    // Cart Update Function
+    // Update Cart Function
     function updateCart() {
-      // Displays Empty cart state when there is no item/items selected
+      // If orders is empty do this
+      // Show empty cart state and hide products in cart state
       if (orders.length <= 0) {
         emptyCartState.classList.remove("d-none");
         productsInCartState.classList.add("d-none");
@@ -154,7 +148,7 @@ async function main() {
       /**
        * Update cart section
        * Update total price for Items selected
-       * Update quantiti of price selected
+       * Update quantity of price selected
        */
       for (const order of orders) {
         sum = sum + order.quantity;
@@ -182,18 +176,16 @@ async function main() {
       totalPicks.innerText = `${sum}`;
       priceTotal.innerText = `$${costTotal.toFixed(2)}`;
       const deleteItems = document.querySelectorAll("[data-delete]");
-      // Calling delete Items Function
+      // Add Event Listener to each delete item in the cart
+      // Loop through each delete item and add event listener to it
       deleteItems.forEach((item, index) => {
         const name = item.dataset.delete.trim();
         item.addEventListener("click", () => deleteItemInCart(name));
       });
     }
 
-    /**
-     * Delete Item Function
-     * Update Cart when Items is being called
-     * Update Products when Items is being called
-     */
+    // Delete Item in Cart Function
+    // This function deletes the item in the cart when the delete icon is clicked
     function deleteItemInCart(name) {
       const newOrders = orders.filter(
         ({ name: orderName }) => orderName !== name
@@ -216,7 +208,8 @@ async function main() {
       });
     }
 
-    // Confirm Orders Function
+    // Confirm Order Function
+    // This function confirms the order when the confirm order button is clicked
     function confirmOrders() {
       let sum = 0;
       receipt.innerHTML = "";
@@ -247,7 +240,8 @@ async function main() {
     }
     confirmOrder.addEventListener("click", confirmOrders);
 
-    // Reset Function
+    // Reset Cart Function
+    // This function resets the cart when the reset button is clicked
     function resetCart() {
       for (const product of products) {
         const addToCart = product.querySelector("[data-add-productBtn]");
@@ -275,7 +269,8 @@ async function main() {
   }
 }
 
-// async function to get product details from the data.json file
+// Fetch Data from JSON file
+// This function fetches data from the JSON file and returns it as a promise
 async function getData() {
   const res = await fetch("/data.json");
   const data = await res.json();
